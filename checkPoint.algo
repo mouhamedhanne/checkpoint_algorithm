@@ -1,0 +1,77 @@
+//checkpoint EXO 1
+
+ALGORITHM bed_sentence
+VAR
+    tabVoy : ARRAY_OF CHAR[];
+    sentence : STRING;
+    numVoy : INTEGER := 0;
+    nbMots:INTEGER := 0;
+    selectedChar: CHAR;
+    selectedVoy: CHAR;
+    i, j : INTEGER;
+BEGIN
+    tabVoy := ["i", "u", "o", "a", "e", "y", "I", "U", "O", "A", "E", "Y"]
+    Write("Entrez une phrase: ");
+    Read(sentence);
+
+    FOR i FROM 0 TO sentence.length-1 STEP 1 DO
+        // on stocke le caractere selectionne
+        selectedChar:= sentence[i]
+
+        // on incremente le nombre de mots si le caractere est un espace ou un point
+        IF (selectedChar = " " OR selectedChar = ".") THEN
+            nbMots:= nbMots + 1
+        END_IF
+
+        // on parcour le tableau de voyelles
+        FOR j FROM 0 TO tabVoy.length-1 STEP 1  DO
+        // on stocke la voyelle selectionne
+        selectedVoy:=tabVoy[j]
+
+        // on verifie si le caractere stocke est une voyelle
+            IF (selectedChar = selectedVoy) THEN
+                numVoy:= numVoy + 1
+            END_IF
+        END_FOR
+
+    END_FOR
+        
+    Write("Le nombre de mots est :", nbMots);
+    Write("Le nombre de voyelles est :", numVoy);
+END
+
+//-------------------------------------------------------------------------------------------------
+//checkpoint EXO 1
+
+ALGORITHM checkpoint_two
+VAR
+    ensemble_1 : ARRAY_OF INTEGER[];    
+    ensemble_2 : ARRAY_OF INTEGER[];    
+    elementDistincts : ARRAY_OF BOOLEAN[]; 
+    sommeTotal : INTEGER := 0;     
+    i : INTEGER;
+BEGIN
+    ensemble_1 := [3, 1, 7, 9];
+    ensemble_2 := [2, 4, 1, 9, 3];
+
+    FOR i FROM 0 TO elementDistincts.length-1 DO
+        elementDistincts[i] := FALSE;
+    END_FOR
+
+    FOR i FROM 0 TO ensemble_1.length-1 DO
+        elementDistincts[ensemble_1[i]] := TRUE;
+    END_FOR
+
+    FOR i FROM 0 TO ensemble_2.length-1 DO
+        elementDistincts[ensemble_2[i]] := TRUE;
+    END_FOR
+
+    FOR i FROM 0 TO elementDistincts.length-1 DO
+        IF elementDistincts[i] THEN
+            sommeTotal := sommeTotal + elementDistincts[i];
+        END_IF
+    END_FOR
+
+    Write("La somme des éléments distincts est : ", sommeTotal);
+
+END
